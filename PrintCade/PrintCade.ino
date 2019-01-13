@@ -1,7 +1,29 @@
-// Adafruit Motor shield library
-// copyright Adafruit Industries LLC, 2009
-// this code is public domain, enjoy!
+// Main code by Michael Ang
+// https://www.michaelang.com/project/printcade
+//
+// Hack hack stylez, was written during the 48 hour Art Hack Day at transmediale in Berlin
 
+// We soldered to the switches in a retro joystick to read the joystick movement.
+// The LED colours come from the graphics on the side of the joystick (classic 80s games).
+// We use some Perlin noise to keep it fresh. The fire button on the joystick triggers
+// flashes on the print head - we soldered to the existing ribbon cable running up to the
+// print head. Haxx0r.
+
+// Other code:
+  // Adafruit Motor shield library
+  // copyright Adafruit Industries LLC, 2009
+  // this code is public domain, enjoy!
+
+  // Perlin noise using the algorithm from http://freespace.virgin.net/hugo.elias/models/m_perlin.html
+  // thanks to hugo elias
+
+// Seems to require the OLD Adafruit Motor Library.
+// Download the zip, then Sketch -> Include Library -> Add .ZIP library
+// https://learn.adafruit.com/adafruit-motor-shield/library-install
+// (I believe the motor shield we used was a gift from Phil Torrone back in the day, thanks!)
+
+// Last tested with Arduino 1.8.5 and Arduino UNO
+  
 #include <AFMotor.h>
 
 AF_DCMotor motor(3);

@@ -1,5 +1,5 @@
 # PrintCade
-All the way from Art Hack transmediale, it's PrintCaaaaaaaade!
+All the way from Art Hack Day / transmediale, it's PrintCaaaaaaaade!
 
 ![](PrintCade.gif)
 

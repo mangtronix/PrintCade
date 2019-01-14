@@ -17,10 +17,15 @@
   // Perlin noise using the algorithm from http://freespace.virgin.net/hugo.elias/models/m_perlin.html
   // thanks to hugo elias
 
+
+// Required libraries:
 // Seems to require the OLD Adafruit Motor Library.
 // Download the zip, then Sketch -> Include Library -> Add .ZIP library
 // https://learn.adafruit.com/adafruit-motor-shield/library-install
 // (I believe the motor shield we used was a gift from Phil Torrone back in the day, thanks!)
+//
+// TimerOne
+// Sketch -> Include Library -> Manage Libraries -> search for 'TimerOne'
 
 // Last tested with Arduino 1.8.5 and Arduino UNO
   

@@ -107,13 +107,25 @@ int colors_max_index = 7;
 
 int firing = 0;
 
+int buttonState, oldButtonState;
+int leftState, oldLeftState;
+int rightState, oldRightState;
+
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(LEFT_PIN, INPUT_PULLUP);
   pinMode(RIGHT_PIN, INPUT_PULLUP);
+
+  // Read initial values of buttons
+  buttonState = digitalRead(BUTTON_PIN);
+  leftState = digitalRead(LEFT_PIN);
+  rightState = digitalRead(RIGHT_PIN);
+
+  oldButtonState = buttonState;
+  oldLeftState = leftState;
+  oldRightState = oldRightState;
   
-  // Serial.begin(9600);           // set up Serial library at 9600 bps
-  // Serial.println("Motor test!");
+  Serial.begin(9600);           // set up Serial library at 9600 bps
 
   // turn on motor
   motor.setSpeed(MOTOR_SPEED);
@@ -161,30 +173,70 @@ void setup() {
 
 void loop() {
   uint8_t i;
+
+  ////////// Process buttons //////////
+  // We look for changes from the old button state and send serial messages to
+  // match. The serial messages map to key down and key up inside the Processing
+  // sketch.
+  //
+  // e.g. we send "L" when the joystick is initially held left, and then "l"
+  //      when released
   
   int buttonState = digitalRead(BUTTON_PIN);
   int leftState = digitalRead(LEFT_PIN);
   int rightState = digitalRead(RIGHT_PIN);
+
+  if (buttonState != oldButtonState) {
+    if (buttonState == LOW) {
+      Serial.print("B");
+    } else {
+      Serial.print("b");
+    }
+    oldButtonState = buttonState;
+  }
+
+  if (leftState != oldLeftState) {
+    if (leftState == LOW) {
+      Serial.print("L");
+    } else {
+      Serial.print("l");
+    }
+    oldLeftState = leftState;
+  }
+
+  if (rightState != oldRightState) {
+    if (rightState == LOW) {
+      Serial.print("R");
+    } else {
+      Serial.print("r");
+    }
+    oldRightState = rightState;
+  }
+
   
+  // Process buttons to motor actions
   if (buttonState == LOW) {
-    // Serial.print("B");
+    // Firing
     firing = 1;
-    fan.run(FORWARD);
+
   } else {
+    // Not firing
     firing = 0;
     fan.run(RELEASE);
   }
   
   if (rightState == LOW) {
-    // Serial.print("R");
+    // Moving right
     motor.run(BACKWARD);
     motor.setSpeed(MOTOR_SPEED);
+    
   } else if (leftState == LOW) {
-    // Serial.print("L");
+    // Moving left
     motor.run(FORWARD);
     motor.setSpeed(MOTOR_SPEED);
+    
   } else {
-    // Serial.print("S");
+    // Not moving
     motor.setSpeed(0);
     motor.run(RELEASE);
   }
@@ -258,7 +310,7 @@ void loop() {
     }
 
 
-  delay(100);
+  delay(30); // This delay as well as the serial send time sets the minimum latency to the Processing sketch
 }
   
 void oldloop() {

@@ -6,7 +6,7 @@ void setup(){
 
 void loop(){
   Serial.write('L');
-   delay(500);
+  delay(500);
   Serial.write('R');
   delay(500);
   Serial.write('B');
@@ -14,3 +14,5 @@ void loop(){
 
   delay(1000);
 }
+
+

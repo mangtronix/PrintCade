@@ -1,7 +1,7 @@
 // Main code by Michael Ang
 // https://www.michaelang.com/project/printcade
 //
-// Hack hack stylez, was written during the 48 hour Art Hack Day at transmediale in Berlin
+// Hack hack stylez, was written in 2014 during the 48 hour Art Hack Day at transmediale in Berlin
 
 // We soldered to the switches in a retro joystick to read the joystick movement.
 // The LED colours come from the graphics on the side of the joystick (classic 80s games).
